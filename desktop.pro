@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++17
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -29,6 +29,10 @@ FORMS += \
 TRANSLATIONS += \
     desktop_ru_RU.ts
 
+
+ICON = icon.icns
+
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -42,3 +46,6 @@ INCLUDEPATH += $$PWD/core
 DEPENDPATH += $$PWD/core
 
 macx: PRE_TARGETDEPS += $$PWD/core/libcore.a
+
+RESOURCES += \
+    qrc.qrc

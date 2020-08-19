@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->setFixedSize(600, 165);
+
     ui->progressBar->setVisible(false);
 
     connect(ui->btnOpen, &QPushButton::clicked, this, &MainWindow::setDirectory);
@@ -18,6 +20,27 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+bool MainWindow::checkData()
+{
+    if (ui->lePath->text().isEmpty() || ui->lePassword->text().isEmpty()) {
+        QMessageBox msgBox;
+        msgBox.setModal(true);
+        msgBox.setText(tr("Path and Password is required."));
+        msgBox.exec();
+        return false;
+    }
+
+    return true;
+}
+
+void MainWindow::showInfo(QString text)
+{
+    QMessageBox msgBox;
+    msgBox.setModal(true);
+    msgBox.setText(text);
+    msgBox.exec();
 }
 
 void MainWindow::setDirectory()
@@ -32,11 +55,7 @@ void MainWindow::setDirectory()
 
 void MainWindow::encrypt()
 {
-    if (ui->lePath->text().isEmpty() || ui->lePassword->text().isEmpty()) {
-        QMessageBox msgBox;
-        msgBox.setModal(true);
-        msgBox.setText("Path and Password is required.");
-        msgBox.exec();
+    if (!checkData()) {
         return;
     }
 
@@ -53,11 +72,7 @@ void MainWindow::encrypt()
 
 void MainWindow::decrypt()
 {
-    if (ui->lePath->text().isEmpty() || ui->lePassword->text().isEmpty()) {
-        QMessageBox msgBox;
-        msgBox.setModal(true);
-        msgBox.setText("Path and Password is required.");
-        msgBox.exec();
+    if (!checkData()) {
         return;
     }
 

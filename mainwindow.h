@@ -25,6 +25,9 @@ public:
 private:
     Ui::MainWindow *ui;
 
+    bool checkData();
+    void showInfo(QString text);
+
 private slots:
     void setDirectory();
     void encrypt();
